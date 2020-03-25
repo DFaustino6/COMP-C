@@ -1,23 +1,21 @@
-import java.util.Hashtable;
+
 
 /**
  * Parser
  */
 public class Parser {
 
-    private Hashtable<String,Hashtable<String,String>> lookup;
     private String string;
     private char token;
     private int pos = 0;
 
     public Parser() {
         string = "";
-        token = ' ';
     }
 
     public boolean is_valid(String s){
         string = s;
-        token = string.charAt(pos);
+        token = string.charAt(pos++);
         E();
         return token == '$';
     }
@@ -35,39 +33,30 @@ public class Parser {
             case '(':
                 match('(');
                 E();
+                match(')');
                 break;
         }
     }
 
     private void X(){
-        switch (token) {
-            case '+':
-                match('+');
-                E();
-                break;
+        if(token == '+') {
+            match('+');
+            E();
         }
     }
 
     private void Y(){
-        switch (token) {
-            case '*':
-                match('*');
-                T();
-                break;
+        if(token == '*') {
+            match('*');
+            T();
         }
     }
 
-    private boolean match(char tok){
+    private void match(char tok){
         if(tok == token) {
             token=string.charAt(pos++);
-            return true;
-        }
-        System.out.println("Error: token " + tok + " expected");
-        return false;
+        } else
+            System.out.println("Error: token " + tok + " expected");
     }
 
-    /*private void tableInitialize(){
-        lookup = new Hashtable<String,Hashtable<String,String>>();
-        Hashtable<String,String> temp = new Hashtable<String,String>();
-    }*/
 }
