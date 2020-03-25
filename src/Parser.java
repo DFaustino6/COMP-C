@@ -21,16 +21,28 @@ public class Parser {
     public boolean is_valid(String s){
         string = s;
         token = string.charAt(pos++);
-        E();
+        try {
+            E();
+        }
+        catch (Exception e){
+            return false;
+        }
         return token == '$';
     }
 
-    private void E() {
+    private void E() throws Exception {
         T();
         X();
     }
 
-    private void T(){
+    private void X() throws Exception {
+        if(token == '+') {
+            match('+');
+            E();
+        }
+    }
+
+    private void T() throws Exception{
         switch (token) {
             case 'i':
                 match('i');
@@ -41,17 +53,11 @@ public class Parser {
                 E();
                 match(')');
                 break;
+            default: throw new Exception("Error: expected ( or int");
         }
     }
 
-    private void X(){
-        if(token == '+') {
-            match('+');
-            E();
-        }
-    }
-
-    private void Y(){
+    private void Y() throws Exception {
         if(token == '*') {
             match('*');
             T();
