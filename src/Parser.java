@@ -29,7 +29,7 @@ public class Parser {
         T();
         X();
     }
-    
+
     private void T(){
         switch (token) {
             case 'i':
@@ -61,8 +61,8 @@ public class Parser {
     private void match(char tok){
         if(tok == token) {
             token=string.charAt(pos++);
-        } else
-            System.out.println("Error: token " + tok + " expected");
+        } /*else
+            System.out.println("Error: token " + tok + " expected");*/
     }
 
 }
