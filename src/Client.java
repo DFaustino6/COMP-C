@@ -8,7 +8,7 @@ public class Client {
         Scanner sc= new Scanner(System.in);
         while (sc.hasNext()) {
             Parser p = new Parser();
-            System.out.println(p.is_valid(sc.next()));
+            System.out.println(p.validate(sc.next()));
         }
         sc.close();
     }

@@ -12,6 +12,11 @@ public class Parser {
     public Parser() {
         string = "";
     }
+    public String validate(String s){
+        return is_valid(s)
+        ? "accepted"
+        : "rejected";
+    }
 
     public boolean is_valid(String s){
         string = s;
@@ -24,6 +29,7 @@ public class Parser {
         T();
         X();
     }
+    
     private void T(){
         switch (token) {
             case 'i':
